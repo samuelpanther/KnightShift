@@ -1,0 +1,84 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: system-ui, sans-serif;
+    background: linear-gradient(#667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    padding: 24px; 
+}
+
+.wrap {
+    max-width: 800px;
+    margin: 0 auto;
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+}
+
+h1 {
+    margin-bottom: 20px;
+    color: #333; 
+}
+
+#output {
+    padding: 20px;
+    background: #f8f9fa;
+    border-radius: 8px;
+    border-left: 4px solid #667eea;
+}
+
+.product {
+    padding: 16px;
+    margin-bottom: 16px;
+    background: white;
+    border-radius: 6px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.product h3 {
+    color: #667eea;
+    margin-bottom: 8px;
+}
+
+.product p {
+    color: #666;
+    margin-bottom: 4px;
+}
+
+.price {
+    font-size: 20px;
+    font-weight: bold;
+    color: #2ecc71;
+    margin-top: 8px;
+}
+     
+.employee {
+    padding: 16px; 
+    margin-bottom: 16px; 
+    background: white;
+    border-radius: 6px; 
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    border-left: 4px solid #3498db;
+}
+
+.employee h3 {
+    color: #3498db;
+    margin-bottom: 8px;
+}
+
+.employee p {
+    color: #666; 
+    margin-bottom: 4px;
+}
+
+.department {
+    font-weight: bold; 
+    color: #e74c3c;
+    margin-top: 8px;
+}
+
