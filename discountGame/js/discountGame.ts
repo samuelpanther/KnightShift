@@ -1,13 +1,15 @@
 class DiscountGame {
   discounts: { img: string; code: string }[];
-  logo: HTMLElement; 
+  logo: HTMLImageElement; 
   result: HTMLElement;
   button: HTMLButtonElement;
   used: boolean;
 
   constructor(discounts: { img: string; code: string }[]) {
     this.discounts = discounts;
-    this.logo = document.getElementById("logo")!;
+    const logoEl = document.getElementById("logobag");
+    if (!logoEl) throw new Error("Logo element not found");
+    this.logo = logoEl as HTMLImageElement;
     this.result = document.getElementById("result")!;
     this.button = document.getElementById("reveal-btn") as HTMLButtonElement;
     this.used = false;
@@ -40,7 +42,7 @@ class DiscountGame {
     <p>Enter this code at checkout</p>
   `;
 
-  this.result.style.opacity = "1";
+  this.result.classList.add("show");
   this.button.style.display = "none";
 
   const intro = document.getElementById("game-intro");
@@ -49,7 +51,20 @@ class DiscountGame {
 }, delay);
   }
 }
+const imagesToPreload = [
+  "images/5.png",
+  "images/10.png",
+  "images/15.png",
+  "images/20.png",
+  "images/25.png",
+  "images/30.png",
+  "images/BOGO.png",
+];
 
+imagesToPreload.forEach(src => {
+  const img = new Image();
+  img.src = src;
+});
 // start the game
 new DiscountGame([
   { img: "images/5.png", code: "KS5TY" },

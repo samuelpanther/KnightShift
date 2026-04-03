@@ -2,7 +2,10 @@ var DiscountGame = /** @class */ (function () {
     function DiscountGame(discounts) {
         var _this = this;
         this.discounts = discounts;
-        this.logo = document.getElementById("logo");
+        var logoEl = document.getElementById("logobag");
+        if (!logoEl)
+            throw new Error("Logo element not found");
+        this.logo = logoEl;
         this.result = document.getElementById("result");
         this.button = document.getElementById("reveal-btn");
         this.used = false;
@@ -23,7 +26,7 @@ var DiscountGame = /** @class */ (function () {
         setTimeout(function () {
             _this.logo.style.display = "none";
             _this.result.innerHTML = "\n    <img src=\"".concat(reward.img, "\" />\n    <p>Your reward:</p>\n    <p><strong>").concat(reward.code, "</strong></p>\n    <p>Enter this code at checkout</p>\n  ");
-            _this.result.style.opacity = "1";
+            _this.result.classList.add("show");
             _this.button.style.display = "none";
             var intro = document.getElementById("game-intro");
             if (intro)
@@ -32,6 +35,19 @@ var DiscountGame = /** @class */ (function () {
     };
     return DiscountGame;
 }());
+var imagesToPreload = [
+    "images/5.png",
+    "images/10.png",
+    "images/15.png",
+    "images/20.png",
+    "images/25.png",
+    "images/30.png",
+    "images/BOGO.png",
+];
+imagesToPreload.forEach(function (src) {
+    var img = new Image();
+    img.src = src;
+});
 // start the game
 new DiscountGame([
     { img: "images/5.png", code: "KS5TY" },
