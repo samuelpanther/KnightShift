@@ -66,20 +66,97 @@ function initializeCheckoutStepper() {
   var renderStep = function () {
     stepPills.forEach(function (pill, index) {
       pill.classList.toggle("active", index === currentStep);
+
+  stepPills.forEach(function (pill, index) {
+  pill.addEventListener("click", function () {
+    // Only allow going backwards (or current step)
+    if (index <= currentStep) {
+      currentStep = index;
+      renderStep();
+    }
+  });
+});
+    
     });
     stepPanels.forEach(function (panel, index) {
       panel.hidden = index !== currentStep;
     });
     nextButton.textContent = currentStep === stepPanels.length - 1 ? "Place Order" : "Continue";
   };
+
   nextButton.addEventListener("click", function () {
-    if (currentStep < stepPanels.length - 1) {
-      currentStep += 1;
-      renderStep();
-    }
-    else {
-      alert("Demo complete: your order is ready for review.");
-    }
+  if (currentStep === 0) {
+    if (!validateShipping()) return;
+  }
+
+  if (currentStep === 1) {
+    if (!validatePayment()) return;
+  }
+
+  if (currentStep < stepPanels.length - 1) {
+    currentStep += 1;
+    renderStep();
+  } else {
+    alert("Demo complete: your order is ready for review.");
+  }
+});
+
+    
   });
   renderStep();
+
+function showError(field, message) {
+  field.classList.add("is-invalid");
+  const error = document.getElementById(field.id + "-error");
+  if (error) error.textContent = message;
+}
+
+function clearError(field) {
+  field.classList.remove("is-invalid");
+  const error = document.getElementById(field.id + "-error");
+  if (error) error.textContent = "";
+}
+
+function validateShipping() {
+  const name = document.getElementById("name");
+  const email = document.getElementById("email");
+  const address = document.getElementById("address");
+
+  let valid = true;
+
+  if (!name.value.trim()) {
+    showError(name, "Full name is required");
+    valid = false;
+  } else clearError(name);
+
+  const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!email.value.trim()) {
+    showError(email, "Email is required");
+    valid = false;
+  } else if (!emailPattern.test(email.value)) {
+    showError(email, "Enter a valid email");
+    valid = false;
+  } else clearError(email);
+
+  if (!address.value.trim()) {
+    showError(address, "Address is required");
+    valid = false;
+  } else clearError(address);
+
+  return valid;
+}
+
+function validatePayment() {
+  const card = document.getElementById("card");
+
+  if (!card.value.trim()) {
+    showError(card, "Card number is required");
+    return false;
+  }
+
+  clearError(card);
+  return true;
+}
+
+
 }
