@@ -226,3 +226,83 @@ textarea:focus {
     transition: none !important;
   }
 }
+
+
+/* take a chance discount game */
+  
+  #game {
+  padding: 2vh 5vw;
+  box-sizing: border-box;
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+/* intro text */
+#game #game-intro {
+  font-size: clamp(0.9rem, 2vh, 1.2rem);
+  color: var(--ink);
+  margin: 3vh 0 2vh 0;
+  line-height: 1.5;
+}
+
+/* logo */
+#game #logobag {
+  width: clamp(220px, 40vw, 520px);
+  transition: opacity 0.5s ease;
+  margin-bottom: 1.5rem;
+}
+
+/* result container */
+#game #result {
+  opacity: 0;
+  margin-top: 2vh;
+  transform: scale(0.95);
+  transition: opacity 0.5s ease, transform 0.4s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* when visible (JS sets opacity to 1) */
+#game #result.show {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* result image */
+#game #result img {
+  width: clamp(120px, 25vw, 250px);
+  display: block;
+  margin: 0 auto 1vh auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* text */
+#game #result p {
+  margin: 0.5vh 0;
+  font-size: clamp(0.9rem, 2vh, 1.2rem);
+  color: var(--ink);
+}
+
+/* discount code highlight */
+#game #result strong {
+  color: var(--sage);
+  font-size: clamp(1rem, 2.5vh, 1.4rem);
+}
+
+/* button polish */
+#game #reveal-btn {
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+#game #reveal-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+#game #reveal-btn:active {
+  transform: translateY(0);
+  box-shadow: none;
+}
