@@ -57,52 +57,67 @@ function updateQuantity(change) {
 }
 function initializeCheckoutStepper() {
   var nextButton = document.getElementById("nextStep");
+  var prevButton = document.getElementById("prevStep");
   var stepPills = document.querySelectorAll(".step-pill");
   var stepPanels = document.querySelectorAll(".step-panel");
+
   if (!nextButton || !stepPills.length || !stepPanels.length) {
     return;
   }
+
   var currentStep = 0;
-  var renderStep = function () {
+
+  function renderStep() {
     stepPills.forEach(function (pill, index) {
       pill.classList.toggle("active", index === currentStep);
-
-  stepPills.forEach(function (pill, index) {
-  pill.addEventListener("click", function () {
-    // Only allow going backwards (or current step)
-    if (index <= currentStep) {
-      currentStep = index;
-      renderStep();
-    }
-  });
-});
-    
     });
+
     stepPanels.forEach(function (panel, index) {
       panel.hidden = index !== currentStep;
     });
-    nextButton.textContent = currentStep === stepPanels.length - 1 ? "Place Order" : "Continue";
-  };
+
+    if (prevButton) {
+      prevButton.hidden = currentStep === 0;
+    }
+
+    nextButton.textContent =
+      currentStep === stepPanels.length - 1 ? "Place Order" : "Continue";
+  }
+
+  stepPills.forEach(function (pill, index) {
+    pill.addEventListener("click", function () {
+      if (index <= currentStep) {
+        currentStep = index;
+        renderStep();
+      }
+    });
+  });
+
+  if (prevButton) {
+    prevButton.addEventListener("click", function () {
+      if (currentStep > 0) {
+        currentStep -= 1;
+        renderStep();
+      }
+    });
+  }
 
   nextButton.addEventListener("click", function () {
-  if (currentStep === 0) {
-    if (!validateShipping()) return;
-  }
+    if (currentStep === 0 && !validateShipping()) return;
+    if (currentStep === 1 && !validatePayment()) return;
 
-  if (currentStep === 1) {
-    if (!validatePayment()) return;
-  }
-
-  if (currentStep < stepPanels.length - 1) {
-    currentStep += 1;
-    renderStep();
-  } else {
-    alert("Demo complete: your order is ready for review.");
-  }
-});
-
-    
+    if (currentStep < stepPanels.length - 1) {
+      currentStep += 1;
+      renderStep();
+    } else {
+      alert("Demo complete: your order is ready for review.");
+    }
   });
+
+  renderStep();
+}
+
+);
   renderStep();
 
 function showError(field, message) {
