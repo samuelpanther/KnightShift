@@ -55,6 +55,7 @@ function updateQuantity(change) {
   quantityInput.value = nextValue.toString();
   subtotal.textContent = "$" + (nextValue * unitPrice).toFixed(2);
 }
+
 function initializeCheckoutStepper() {
   var nextButton = document.getElementById("nextStep");
   var prevButton = document.getElementById("prevStep");
@@ -117,18 +118,17 @@ function initializeCheckoutStepper() {
   renderStep();
 }
 
-);
-  renderStep();
+
 
 function showError(field, message) {
   field.classList.add("is-invalid");
-  const error = document.getElementById(field.id + "-error");
+  const error = document.getElementById(field.id + "Error");
   if (error) error.textContent = message;
 }
 
 function clearError(field) {
   field.classList.remove("is-invalid");
-  const error = document.getElementById(field.id + "-error");
+  const error = document.getElementById(field.id + "Error");
   if (error) error.textContent = "";
 }
 
@@ -173,5 +173,3 @@ function validatePayment() {
   return true;
 }
 
-
-}
