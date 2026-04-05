@@ -316,3 +316,20 @@ textarea:focus {
   transform: translateY(0);
   box-shadow: none;
 }
+
+.form-control.is-invalid {
+  border: 2px solid #b42318;
+  background-color: #fff5f5;
+}
+
+.field-error {
+  margin-top: 0.35rem;
+  font-size: 0.9rem;
+  color: #b42318;
+  min-height: 1.2rem;
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
