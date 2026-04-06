@@ -279,7 +279,7 @@ textarea:focus {
 }
 
 /* intro text */
-#game #game-intro {
+#game-intro {
   font-size: clamp(0.9rem, 2vh, 1.2rem);
   color: var(--ink);
   margin: 3vh 0 2vh 0;
