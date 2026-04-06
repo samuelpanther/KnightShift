@@ -270,7 +270,7 @@ textarea:focus {
 
 /* take a chance discount game */
   
-  #game {
+#game {
   padding: 2vh 5vw;
   box-sizing: border-box;
   max-width: 600px;
@@ -279,7 +279,7 @@ textarea:focus {
 }
 
 /* intro text */
-#game-intro {
+#game #game-intro {
   font-size: clamp(0.9rem, 2vh, 1.2rem);
   color: var(--ink);
   margin: 3vh 0 2vh 0;
